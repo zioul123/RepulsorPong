@@ -19,9 +19,10 @@ public class Ball : MonoBehaviour
 	}
 
     // Initialize the direction
-    void Init(Vector2 dir) 
+    public void Init(Vector2 dir, float speed) 
     {
         direction = dir.normalized;
+        this.speed = speed;
     }
 	
 	void FixedUpdate() 
@@ -52,9 +53,9 @@ public class Ball : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Entered Trigger. Tag: " + collision.tag);
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Spawner"))
         {
-            BounceOffPlayer(collision);
+            BounceOffRound(collision);
         }
         if (collision.gameObject.CompareTag("Wall")) 
         {
@@ -82,10 +83,10 @@ public class Ball : MonoBehaviour
         }
     }
 
-    // Bounce off a player. Precondition is that c must be a player.
-    private void BounceOffPlayer(Collider2D c) 
+    // Bounce off a player. Precondition is that c must be a player or spawnerß.
+    private void BounceOffRound(Collider2D c) 
     {
-        Debug.Log("BounceOffPlayer called");
+        Debug.Log("BounceOffRound called");
         // Get the direction to fly off of
         Vector3 diff = transform.position - c.transform.position;
         direction = new Vector2(diff.x, diff.y).normalized;

@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\GameManager.cs" />
     <Compile Include="Assets\Packages\Custom-2D-Colliders-master\Custom 2D Colliders\Scripts\ArcCollider2D.cs" />
     <Compile Include="Assets\Packages\Custom-2D-Colliders-master\Custom 2D Colliders\Scripts\BezierCurveCollider2D.cs" />
     <Compile Include="Assets\Packages\Custom-2D-Colliders-master\Custom 2D Colliders\Scripts\CapsuleCollider2D.cs" />
@@ -71,7 +72,7 @@
     <Compile Include="Assets\Scripts\Despawner.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
-    <Compile Include="Assets\Wall.cs" />
+    <Compile Include="Assets\Scripts\Wall.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>/Users/louiz/OneDrive/Content Creation/Learning to code/Metal/RepulsorPong/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

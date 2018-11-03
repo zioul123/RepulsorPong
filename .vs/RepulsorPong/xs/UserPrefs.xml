@@ -1,13 +1,13 @@
 ﻿<Properties StartupConfiguration="{2AE7E55F-C5DA-F870-5D12-439948A26145}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Wall.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/GameManager.cs">
     <Files>
-      <File FileName="Assets/Packages/Custom-2D-Colliders-master/Custom 2D Colliders/Scripts/Editor/BezierCurveCollider2D_Editor.cs" Line="159" Column="1" />
-      <File FileName="Assets/Scripts/Player.cs" Line="19" Column="31" />
-      <File FileName="../Nightmare Prototype/Assets/Scripts/Character.cs" Line="61" Column="5" />
-      <File FileName="Assets/Scripts/Ball.cs" Line="75" Column="9" />
-      <File FileName="../Nightmare Prototype/Assets/Scripts/SpellScript.cs" Line="1" Column="24" />
-      <File FileName="Assets/Wall.cs" Line="5" Column="36" />
+      <File FileName="Assets/Scripts/Ball.cs" Line="94" Column="5" />
+      <File FileName="Assets/Scripts/Wall.cs" Line="4" Column="1" />
+      <File FileName="Assets/Scripts/Spawner.cs" Line="21" Column="43" />
+      <File FileName="Assets/Scripts/Player.cs" Line="72" Column="98" />
+      <File FileName="Assets/Scripts/Despawner.cs" Line="1" Column="1" />
+      <File FileName="Assets/GameManager.cs" Line="9" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

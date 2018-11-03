@@ -21,9 +21,10 @@ GameObject:
   - component: {fileID: 4271031770644824}
   - component: {fileID: 212477750909198512}
   - component: {fileID: 58635615743512354}
+  - component: {fileID: 114607121723811614}
   m_Layer: 0
   m_Name: Spawner
-  m_TagString: Untagged
+  m_TagString: Spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40,7 +41,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
 --- !u!58 &58635615743512354
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -56,6 +57,29 @@ CircleCollider2D:
   m_Offset: {x: -0.07814419, y: 0.08374634}
   serializedVersion: 2
   m_Radius: 2.0496953
+--- !u!114 &114607121723811614
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1358532778172174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f346ae946f6bb4054b00f9fbd68adfbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPrefab: {fileID: 1866449356051328, guid: 8ad563e1d1053406696feca29a2e3a05,
+    type: 2}
+  spawner: {fileID: 1358532778172174}
+  dirX: 1
+  dirY: 1
+  speed: 3
+  speedDev: 1
+  initialWait: 2
+  spawnPerSecond: 0.25
+  deviation: 2
+  increaseRate: 0.01
+  ballParent: {fileID: 0}
 --- !u!212 &212477750909198512
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -89,7 +113,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1180266399
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: faa50fe4f1ff843ecafffc8f9f4b35f8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -9,5 +9,4 @@ public class Wall : MonoBehaviour
 
     public bool IsHorizontal { get { return horizontal; } }
     public bool IsVertical { get { return !horizontal; } }
-
 }
