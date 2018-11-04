@@ -7,6 +7,8 @@ public class Ball : MonoBehaviour
 {
     // The rigidbody of the ball
     Rigidbody2D rigidbody;
+    // Collider of the ball
+    Collider2D collider;
     // Determine the direction of the ball
     private Vector2 direction = Vector2.up;
     // The movement speed of the ball
@@ -16,7 +18,8 @@ public class Ball : MonoBehaviour
     void Start() 
     {
         rigidbody = GetComponent<Rigidbody2D>();
-	}
+        collider = GetComponent<Collider2D>();
+    }
 
     // Initialize the direction
     public void Init(Vector2 dir, float speed) 
@@ -30,18 +33,13 @@ public class Ball : MonoBehaviour
         Move();
 	}
 
-    // Set the rotation of the ball
-    public void SetRotation(float z) 
-    {
-        transform.rotation = Quaternion.Euler(0, 0, z);
-    }
-
     // Move the ball
     public void Move()
     {
         rigidbody.velocity = direction * speed * Time.deltaTime;
     }
 
+    // Handle collisions of the ball
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("Entered Collision");
@@ -55,29 +53,8 @@ public class Ball : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Ball"))
         {
-            BounceOffBall(collision.collider);
-        }
-        if (collision.gameObject.CompareTag("Despawner"))
-        {
-            Destroy(this.gameObject);
-        }
-    }
-
-    private void BounceOffBall(Collider2D collider)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log("Entered Trigger. Tag: " + collision.tag);
-        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Spawner"))
-        {
-            BounceOffRound(collision);
-        }
-        if (collision.gameObject.CompareTag("Wall")) 
-        {
-            BounceOffWall(collision);
+            // Let balls phase through each other
+            Physics2D.IgnoreCollision(collider, collision.collider);
         }
         if (collision.gameObject.CompareTag("Despawner"))
         {
@@ -89,14 +66,18 @@ public class Ball : MonoBehaviour
     private void BounceOffWall(Collider2D c)
     {
         Debug.Log("BounceOffWall called");
-        // Get the direction to fly off of
+
+        // Check if the wall is going to bounce it horizontally or vertically
         bool vertical = c.gameObject.GetComponent<Wall>().IsVertical;
 
         // Horizontal - mirror the x direction
-        if (vertical) {
+        if (vertical) 
+        {
             direction.x = -direction.x;
+        }
         // Vertical - mirror the y direction
-        } else {
+        else
+        {
             direction.y = -direction.y;
         }
     }
@@ -105,8 +86,10 @@ public class Ball : MonoBehaviour
     private void BounceOffRound(Collider2D c) 
     {
         Debug.Log("BounceOffRound called");
+
         // Get the direction to fly off of
         Vector3 diff = transform.position - c.transform.position;
+        // Set the direction
         direction = new Vector2(diff.x, diff.y).normalized;
     }
 

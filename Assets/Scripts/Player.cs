@@ -14,7 +14,6 @@ public class Player : MonoBehaviour
     private float speed = 6;
     // Rigidbody of the player
     private Rigidbody2D rigidbody;
-    // The y value that should never change
 
     // For movement purposes
     // Direction of the player
@@ -87,5 +86,4 @@ public class Player : MonoBehaviour
             controls[3] = KeyCode.RightShift;
         }
     }
-
 }
