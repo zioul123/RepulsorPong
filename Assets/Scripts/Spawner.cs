@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public delegate void SpawnBall();
 public class Spawner : MonoBehaviour 
 {
     // Position, velocity, and direction related
@@ -34,6 +35,7 @@ public class Spawner : MonoBehaviour
 
     // Game stopper
     private bool stop;
+    public event SpawnBall spawnBall;
 
     // Use this for initialization
     void Start () {
@@ -52,14 +54,25 @@ public class Spawner : MonoBehaviour
     {
         yield return new WaitForSeconds(initialWait);
 
-        while (!stop) {
-            // Spawn and set the velocity of the ball
-            GameObject spawnedBall = Instantiate(spawnPrefab, spawner.transform.position, transform.rotation, ballParent);
-            spawnedBall.GetComponent<Ball>().Init(new Vector2(dirX + Random.Range(-1f, 1f), dirY + Random.Range(-1f, 1f)),
-                                                  speed + Random.Range(-speedDev, speedDev)); 
+        while (!Stop) {
+            // Check if spawn is allowed
+            if (GameManager.GetInstance().IsSpawnAllowed) {
+                // Notify GameManager of spawned ball
+                if (spawnBall != null) {
+                    spawnBall();
+                }
+                // Spawn and set the velocity of the ball
+                GameObject spawnedBall = Instantiate(spawnPrefab, spawner.transform.position, transform.rotation, ballParent);
+                spawnedBall.GetComponent<Ball>().Init(new Vector2(dirX + Random.Range(-1f, 1f), dirY + Random.Range(-1f, 1f)),
+                                                      speed + Random.Range(-speedDev, speedDev));
+
+            }
+
 
             // Wait before spawning next ball
             yield return new WaitForSeconds(1 / spawnPerSecond + Random.Range(0f, deviation));
         }
     }
+
+    public bool Stop { get { return stop; } set { stop = value; } }
 }
