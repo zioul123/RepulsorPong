@@ -14,11 +14,11 @@ public class Spawner : MonoBehaviour
     [SerializeField]
     private float dirY = 1;
     [SerializeField]
-    private float speed = 3;
+    private float speed = 200f;
     [SerializeField]
-    private float speedDev = 1;
+    private float speedDev = 100f;
     [SerializeField]
-    private float speedIncreaseRate = 0.1f;
+    private float speedIncreaseRate = 3f;
 
     // Timing related
     [SerializeField]

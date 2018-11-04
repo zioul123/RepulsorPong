@@ -10,7 +10,7 @@ public class Ball : MonoBehaviour
     // Determine the direction of the ball
     private Vector2 direction = Vector2.up;
     // The movement speed of the ball
-    private float speed = 3;
+    private float speed = 200f;
 
     // Use this for initialization
     void Start() 
@@ -39,16 +39,34 @@ public class Ball : MonoBehaviour
     // Move the ball
     public void Move()
     {
-        rigidbody.velocity = direction * speed;
+        rigidbody.velocity = direction * speed * Time.deltaTime;
     }
 
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    Debug.Log("Entered");
-    //    if (collision.gameObject.CompareTag("Player")) {
-    //        BounceOffPlayer(collision);
-    //    }
-    //}
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Entered Collision");
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Spawner"))
+        {
+            BounceOffRound(collision.collider);
+        }
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            BounceOffWall(collision.collider);
+        }
+        if (collision.gameObject.CompareTag("Ball"))
+        {
+            BounceOffBall(collision.collider);
+        }
+        if (collision.gameObject.CompareTag("Despawner"))
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    private void BounceOffBall(Collider2D collider)
+    {
+        throw new NotImplementedException();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

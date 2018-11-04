@@ -15,7 +15,6 @@ public class Player : MonoBehaviour
     // Rigidbody of the player
     private Rigidbody2D rigidbody;
     // The y value that should never change
-    private float unchangingY;
 
     // For movement purposes
     // Direction of the player
@@ -28,7 +27,6 @@ public class Player : MonoBehaviour
     {
         SetControls();
         rigidbody = GetComponent<Rigidbody2D>();
-        unchangingY = transform.position.y; 
     }
 
     void FixedUpdate()
@@ -68,9 +66,7 @@ public class Player : MonoBehaviour
     // Move based on direction
     private void Move() 
     {
-        rigidbody.velocity = direction * speed * (speedUp ? 2f : 1f);
-        transform.position = new Vector3(transform.position.x, unchangingY, transform.position.z);
-
+        rigidbody.velocity = direction * speed * (speedUp ? 2f : 1f) * Time.deltaTime;
     }
 
     // Set the controls based on player number

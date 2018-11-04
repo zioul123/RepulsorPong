@@ -23,10 +23,9 @@ GameObject:
   - component: {fileID: 114113167457183468}
   - component: {fileID: 58235553500416268}
   - component: {fileID: 50316931930331922}
-  - component: {fileID: 58753817560605036}
   m_Layer: 0
   m_Name: Ball
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -72,28 +71,13 @@ CircleCollider2D:
   m_GameObject: {fileID: 1866449356051328}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_Material: {fileID: 6200000, guid: a2eb286ee86ab462289ebe736604ec80, type: 2}
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.044870675, y: -0.13244808}
   serializedVersion: 2
   m_Radius: 1.8528339
---- !u!58 &58753817560605036
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1866449356051328}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.02958566, y: -0.1479268}
-  serializedVersion: 2
-  m_Radius: 1.4615467
 --- !u!114 &114113167457183468
 MonoBehaviour:
   m_ObjectHideFlags: 1
