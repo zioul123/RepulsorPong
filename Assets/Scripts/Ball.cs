@@ -58,6 +58,7 @@ public class Ball : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Despawner"))
         {
+            collision.gameObject.GetComponent<Despawner>().MinusOne();
             Destroy(this.gameObject);
         }
     }
