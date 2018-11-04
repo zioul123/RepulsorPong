@@ -53,8 +53,7 @@ public class Ball : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Ball"))
         {
-            // Let balls phase through each other
-            Physics2D.IgnoreCollision(collider, collision.collider);
+            // Balls do not interact for now
         }
         if (collision.gameObject.CompareTag("Despawner"))
         {
