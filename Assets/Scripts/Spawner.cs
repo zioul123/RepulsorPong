@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public delegate void SpawnBall();
-public class Spawner : MonoBehaviour 
+public class Spawner : MonoBehaviour
 {
     // Position, velocity, and direction related
     [SerializeField]
@@ -34,11 +34,13 @@ public class Spawner : MonoBehaviour
     private Transform ballParent;
 
     // Game stopper
-    private bool stop;
+    public bool Stop { get; set; }
+
     public event SpawnBall spawnBall;
 
     // Use this for initialization
     void Start () {
+        Stop = false;
         StartCoroutine(Spawn());
 	}
 	
@@ -74,5 +76,5 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    public bool Stop { get { return stop; } set { stop = value; } }
+
 }
