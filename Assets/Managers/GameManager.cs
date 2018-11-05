@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour 
 {
@@ -65,7 +66,7 @@ public class GameManager : MonoBehaviour
         DisplayWinner(winner);
     }
 
-    // Destroy all balls after a delay
+    // Destroy all balls after a delay and return to main menu
     private IEnumerator DestroyAllBalls() 
     {
         yield return new WaitForSeconds(5);
@@ -74,6 +75,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+        SceneManager.LoadScene(0);
     }
 
     // Display the text to indicate the winner
