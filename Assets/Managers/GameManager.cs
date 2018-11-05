@@ -5,14 +5,19 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour 
 {
+    // Spawners on the field
     [SerializeField]
     private Spawner[] spawners;
+    // Despawners behind players
     [SerializeField]
     private Despawner[] despawners;
+    // The object that all balls will be spawned as children of
     [SerializeField]
     private GameObject ballParent;
+    // The limit of number of balls on the field
     [SerializeField]
     private int totalAllowableBalls;
+    // The text field that announces the winner
     [SerializeField]
     private Text winnerText;
 
@@ -22,26 +27,33 @@ public class GameManager : MonoBehaviour
 	// Use this for initialization
 	void Start() 
     {
+        // Add callbacks to spawners
         for (int i = 0; i < spawners.Length; i++)
         {
-            spawners[i].spawnBall += () => TotalBalls += 1;
+            spawners[i].NotifySpawnBall += () => TotalBalls += 1;
         }
+
+        // Add callbacks to despawners
         for (int i = 0; i < despawners.Length; i++)
         {
-            int iCopy = i;
-            despawners[i].despawnBall += () => TotalBalls -= 1;
-            despawners[i].gameEnd += () => EndGame(iCopy);
+            int iCopy = i; // Used to capture the variable in the gameEnd callback
+            despawners[i].NotifyDespawnBall += () => TotalBalls -= 1;
+            despawners[i].NotifyGameEnd += () => EndGame(iCopy);
         }
     }
 
     // Trigger game lose for the specified player
-    private void EndGame(int loser) {
+    private void EndGame(int loser)
+    {
         Debug.Log("Loser: " + loser);
-        // Stop spawner and despawner functions
+
+        // Stop spawners from functioning
         for (int i = 0; i < spawners.Length; i++)
         {
             spawners[i].Stop = true;
         }
+
+        // Stop despawners from functioning
         for (int i = 0; i < despawners.Length; i++)
         {
             despawners[i].Stop = true;
@@ -51,13 +63,11 @@ public class GameManager : MonoBehaviour
         StartCoroutine(DestroyAllBalls());
 
         // Display winner text
-        string winner;
-        winner = loser == 0 ? "Blue" : "Red";
-        winnerText.text = "Winner is " + winner + " player!";
-        winnerText.color = loser == 0 ? Color.blue : Color.red;
-        winnerText.enabled = true;
+        int winner = loser == 0 ? 1 : 0;
+        DisplayWinner(winner);
     }
 
+    // Destroy all balls after a delay
     private IEnumerator DestroyAllBalls() 
     {
         yield return new WaitForSeconds(5);
@@ -67,10 +77,21 @@ public class GameManager : MonoBehaviour
             Destroy(child.gameObject);
         }
     }
-	
-    // Singleton pattern
-    public static GameManager GetInstance() {
-        if (gameManager == null) {
+
+    // Display the text to indicate the winner
+    private void DisplayWinner(int winner)
+    {
+        string winnerString = winner == 1 ? "Blue" : "Red";
+        winnerText.text = "Winner is " + winnerString + " player!";
+        winnerText.color = winner == 1 ? Color.blue : Color.red;
+        winnerText.enabled = true;
+    }
+
+    // Singleton pattern to get GameManager
+    public static GameManager GetInstance() 
+    {
+        if (gameManager == null) 
+        {
             gameManager = FindObjectOfType<GameManager>();
         }
         return gameManager;

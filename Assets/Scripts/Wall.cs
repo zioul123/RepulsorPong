@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Used to store information about whether the wall is horizontal or vertical 
 public class Wall : MonoBehaviour
 {
     [SerializeField]

@@ -8,12 +8,12 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int playerNumber;
     // Store the player's controls in order right, left, speed, repel
-    private KeyCode[] controls = new KeyCode[4];
+    private readonly KeyCode[] controls = new KeyCode[4];
     // Speed of the player
     [SerializeField]
     private float speed = 6;
     // Rigidbody of the player
-    private Rigidbody2D rigidbody;
+    private Rigidbody2D rigidbody2d;
 
     // For movement purposes
     // Direction of the player
@@ -25,12 +25,12 @@ public class Player : MonoBehaviour
     void Start()
     {
         SetControls();
-        rigidbody = GetComponent<Rigidbody2D>();
+        rigidbody2d = GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
     {
-        rigidbody.velocity = Vector2.zero;
+        rigidbody2d.velocity = Vector2.zero;
         RegisterInput();
         Move();
     }
@@ -44,12 +44,10 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey(controls[0])) // Right
         {
-            Debug.Log("Player " + playerNumber + " Pressed Right");
             direction += Vector2.right;
         }
         if (Input.GetKey(controls[1])) // Left
         {
-            Debug.Log("Player " + playerNumber + " Pressed Left");
             direction += Vector2.left;
         }
         if (Input.GetKey(controls[2])) // Speed
@@ -65,12 +63,13 @@ public class Player : MonoBehaviour
     // Move based on direction
     private void Move() 
     {
-        rigidbody.velocity = direction * speed * (speedUp ? 2f : 1f) * Time.deltaTime;
+        rigidbody2d.velocity = direction * speed * (speedUp ? 2f : 1f) * Time.deltaTime;
     }
 
     // Set the controls based on player number
     private void SetControls()
     {
+        // Red player's controls
         if (playerNumber == 0)
         {
             controls[0] = KeyCode.S; // Right
@@ -78,6 +77,8 @@ public class Player : MonoBehaviour
             controls[2] = KeyCode.LeftShift; // Speed
             controls[3] = KeyCode.Space; // Repel
         }
+
+        // Blue player's controls
         if (playerNumber == 1)
         {
             controls[0] = KeyCode.RightArrow;
