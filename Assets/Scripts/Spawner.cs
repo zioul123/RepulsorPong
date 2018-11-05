@@ -8,16 +8,16 @@ public class Spawner : MonoBehaviour
     // Position, velocity, and direction related
     // The ball to spawn
     [SerializeField]
-    private readonly GameObject spawnPrefab;
+    private GameObject spawnPrefab;
     // The spawn point
     [SerializeField]
-    private readonly GameObject spawnPoint;
+    private GameObject spawnPoint;
     // The x-direction to shoot
     [SerializeField]
-    private readonly float dirX = -1;
+    private float dirX = -1;
     // The y-direction to shoot
     [SerializeField]
-    private readonly float dirY = 1;
+    private float dirY = 1;
     // The average speed of balls that spawn
     [SerializeField]
     private float speed = 200f;

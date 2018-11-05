@@ -45,8 +45,6 @@ public class GameManager : MonoBehaviour
     // Trigger game lose for the specified player
     private void EndGame(int loser)
     {
-        Debug.Log("Loser: " + loser);
-
         // Stop spawners from functioning
         for (int i = 0; i < spawners.Length; i++)
         {

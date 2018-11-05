@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int playerNumber;
     // Store the player's controls in order right, left, speed, repel
-    private readonly KeyCode[] controls = new KeyCode[4];
+    private KeyCode[] controls = new KeyCode[4];
     // Speed of the player
     [SerializeField]
     private float speed = 6;
