@@ -746,7 +746,7 @@ Prefab:
     - target: {fileID: 50634926526084308, guid: da4370c34e0c2411992b08eadccf9c99,
         type: 2}
       propertyPath: m_BodyType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 50634926526084308, guid: da4370c34e0c2411992b08eadccf9c99,
         type: 2}
@@ -767,6 +767,21 @@ Prefab:
       propertyPath: repelRing
       value: 
       objectReference: {fileID: 1305608367}
+    - target: {fileID: 50634926526084308, guid: da4370c34e0c2411992b08eadccf9c99,
+        type: 2}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114451812321120108, guid: da4370c34e0c2411992b08eadccf9c99,
+        type: 2}
+      propertyPath: leftBoundary
+      value: -2.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 114451812321120108, guid: da4370c34e0c2411992b08eadccf9c99,
+        type: 2}
+      propertyPath: rightBoundary
+      value: 2.52
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da4370c34e0c2411992b08eadccf9c99, type: 2}
   m_IsPrefabAsset: 0
@@ -1621,6 +1636,21 @@ Prefab:
       propertyPath: repelRing
       value: 
       objectReference: {fileID: 263519692}
+    - target: {fileID: 114451812321120108, guid: da4370c34e0c2411992b08eadccf9c99,
+        type: 2}
+      propertyPath: leftBoundary
+      value: -2.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 114451812321120108, guid: da4370c34e0c2411992b08eadccf9c99,
+        type: 2}
+      propertyPath: rightBoundary
+      value: 2.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 50634926526084308, guid: da4370c34e0c2411992b08eadccf9c99,
+        type: 2}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da4370c34e0c2411992b08eadccf9c99, type: 2}
   m_IsPrefabAsset: 0

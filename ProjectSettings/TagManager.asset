@@ -49,9 +49,9 @@ TagManager:
   - name: Wall
     uniqueID: 492469249
     locked: 0
-  - name: Spawner
-    uniqueID: 3114700897
-    locked: 0
   - name: Paddle
     uniqueID: 1207887429
+    locked: 0
+  - name: Spawner
+    uniqueID: 3114700897
     locked: 0

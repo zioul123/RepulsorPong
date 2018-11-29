@@ -25,6 +25,11 @@ public class Player : MonoBehaviour
     private Vector2 direction = Vector2.zero;
     // Whether the speed button is pressed
     private bool speedUp;
+    // Left boundary
+    [SerializeField]
+    private float leftBoundary = -2.52f;
+    [SerializeField]
+    private float rightBoundary = 2.52f;
 
     // For repel purposes
     private Coroutine charging;
@@ -106,12 +111,22 @@ public class Player : MonoBehaviour
         charging = null;
     }
 
-
-
     // Move based on direction
     private void Move() 
     {
         rigidbody2d.velocity = direction * speed * (speedUp ? 2f : 1f) * Time.deltaTime;
+
+        // Check boundaries and zero the velocity if it's trying to exceed them
+        if (transform.position.x >= rightBoundary && rigidbody2d.velocity.x > 0)
+        {
+            rigidbody2d.velocity = Vector2.zero;
+            transform.position = new Vector2(rightBoundary, transform.position.y);
+        }
+        if (transform.position.x <= leftBoundary && rigidbody2d.velocity.x < 0)
+        {
+            rigidbody2d.velocity = Vector2.zero;
+            transform.position = new Vector2(leftBoundary, transform.position.y);
+        }
     }
 
     // Set the controls based on player number
