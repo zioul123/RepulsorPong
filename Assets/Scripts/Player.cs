@@ -14,6 +14,11 @@ public class Player : MonoBehaviour
     private float speed = 6;
     // Rigidbody of the player
     private Rigidbody2D rigidbody2d;
+    // The repel ring object for repel animation
+    [SerializeField]
+    private Transform repelRing;
+    // The repelRing's animator
+    private Animator repelRingAnimator;
 
     // For movement purposes
     // Direction of the player
@@ -21,11 +26,15 @@ public class Player : MonoBehaviour
     // Whether the speed button is pressed
     private bool speedUp;
 
+    // For repel purposes
+    private Coroutine charging;
+
     // Use this for initialization
     void Start()
     {
         SetControls();
         rigidbody2d = GetComponent<Rigidbody2D>();
+        repelRingAnimator = repelRing.GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -60,19 +69,44 @@ public class Player : MonoBehaviour
         }
     }
 
+    // Repel all balls away from the paddle
     private void Repel()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 1.3f);
-        foreach (Collider2D collider in colliders)
+        // Only repel if not charging right now
+        if (charging == null)
         {
-            // Repel all balls away at double speed
-            if (collider.CompareTag("Ball"))
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 1.3f);
+            foreach (Collider2D collider in colliders)
             {
-                Ball ball = collider.GetComponent<Ball>();
-                ball.RepelFrom(GetComponent<Collider2D>());
+                // Repel all balls away at double speed
+                if (collider.CompareTag("Ball"))
+                {
+                    Ball ball = collider.GetComponent<Ball>();
+                    ball.RepelFrom(GetComponent<Collider2D>());
+                }
             }
+
+            // Set repel animation to start and reset "Charged"
+            repelRingAnimator.ResetTrigger("Charged");
+            repelRingAnimator.SetTrigger("Repel");
+            
+            // Start charging
+            charging = StartCoroutine(Charge()); 
         }
     }
+
+    // The coroutine used after repelling
+    private IEnumerator Charge()
+    {
+        yield return new WaitForSeconds(2);
+        // Set repel animation to ready and reset "Repel"
+        repelRingAnimator.ResetTrigger("Repel");
+        repelRingAnimator.SetTrigger("Charged"); 
+        // Clear the coroutine
+        charging = null;
+    }
+
+
 
     // Move based on direction
     private void Move() 

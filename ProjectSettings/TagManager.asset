@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - Spawner
   - Ball
+  - RepelRing
   layers:
   - Default
   - TransparentFX
