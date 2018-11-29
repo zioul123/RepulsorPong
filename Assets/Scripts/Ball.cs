@@ -13,6 +13,8 @@ public class Ball : MonoBehaviour
     private Vector2 direction = Vector2.up;
     // The movement speed of the ball
     private float speed = 200f;
+    // Whether it just got repelled
+    private bool repelled = false;
 
     // Use this for initialization
     void Start() 
@@ -36,7 +38,7 @@ public class Ball : MonoBehaviour
     // Move the ball
     public void Move()
     {
-        rigidbody2d.velocity = direction * speed * Time.deltaTime;
+        rigidbody2d.velocity = direction * speed * Time.deltaTime * (repelled ? 2 : 1);
     }
 
     // Handle collisions of the ball
@@ -86,7 +88,17 @@ public class Ball : MonoBehaviour
         Vector3 diff = transform.position - c.transform.position;
         // Set the direction
         direction = new Vector2(diff.x, diff.y).normalized;
+        // Reset the repel
+        if (repelled) repelled = !repelled;
+    }
+
+    // Repels the ball from the collider provided using BounceOffR;und
+    public void RepelFrom(Collider2D c)
+    {
+        BounceOffRound(c);
+        Repelled = true;
     }
 
     public float Speed { get { return speed; } set { speed = value; } }
+    public bool Repelled { get { return repelled; } set { repelled = value; } }
 }

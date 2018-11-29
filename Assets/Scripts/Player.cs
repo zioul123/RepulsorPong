@@ -56,7 +56,21 @@ public class Player : MonoBehaviour
         }
         if (Input.GetKey(controls[3])) // Repel
         {
+            Repel();
+        }
+    }
 
+    private void Repel()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 1.3f);
+        foreach (Collider2D collider in colliders)
+        {
+            // Repel all balls away at double speed
+            if (collider.CompareTag("Ball"))
+            {
+                Ball ball = collider.GetComponent<Ball>();
+                ball.RepelFrom(GetComponent<Collider2D>());
+            }
         }
     }
 
